@@ -9,11 +9,11 @@
 
   <channel>
     <title>
-      <![CDATA[  Franklin Template  ]]>
+      <![CDATA[  dokudo91のメモ  ]]>
     </title>
     <link> https://dokudo91.github.io/ </link>
     <description>
-      <![CDATA[  Example website using Franklin  ]]>
+      <![CDATA[  dokudo91のメモ  ]]>
     </description>
     <atom:link
       href="https://dokudo91.github.io/feed.xml"
