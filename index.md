@@ -1,9 +1,11 @@
 @def title = "dokudo91のメモ"
-@def tags = ["julia"]
-
-# Julia+Franklinでサイト作成
-Juliaと静的サイトジェネレーターライブラリ[Franklin](https://franklinjl.org/)を使ってサイトを作成する。
+@def tags = ["julia", "Franklin"]
 \toc
+# Julia+Franklinでサイト作成
+Juliaと静的サイトジェネレータライブラリ[Franklin](https://franklinjl.org/)を使ってサイトを作成する。
+## Franklinとは
+Franklinはmarkdown形式で記事を作成し、htmlに変換して出力する静的サイトジェネレータ。
+Juliaでコンパイルするので独自コマンドを追加したり、Julia式を評価したりできる。
 ## テンプレートサイト作成
 ```julia-repl
 (v1.6) pkg> add Franklin
@@ -28,3 +30,16 @@ shell> git push --set-upstream origin master
 ```
 SettingsのPagesでSourceをgh-pagesブランチに変更する。
 ![](/assets/GitHub Pages Settings.png)
+
+# サイトマップ
+sitemap.xmlは自動で作成される。
+sitemap.xmlは検索エンジンにサイト情報を伝えるために存在している。
+changefreqやpriorityなど指定できるがGoogleには無視されるようなのでデフォルトのままでいい。
+
+# LaTeX-likeなコマンド
+`\newcommand{\name}[...]{...}`という形でコマンドを定義する事ができる。
+例えば、
+```
+\newcommand{\b}{~~~<br>~~~}
+```
+と定義してconfig.mdに追加しておけば、`\b`を文末に置くだけでhtmlでは改行`<br>`が出力される。
