@@ -1,7 +1,11 @@
 @def title = "DataFrames"
 @def tags = ["julia", "DataFrames"]
+@def description = "DataFramesはpythonにおけるpandasのJulia版。"
+
 # DataFrames
 [DataFrames](https://github.com/JuliaData/DataFrames.jl)
+
+{{fill description}}
 \toc
 ## columnをコンソールで省略せずに表示する
 showの引数に`allcols=true`を付けることで全てcolumnが表示される。

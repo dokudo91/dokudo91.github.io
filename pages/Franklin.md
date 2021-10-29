@@ -1,17 +1,23 @@
 @def title = "Franklin"
 @def tags = ["julia", "Franklin"]
+@def description = "Juliaと静的サイトジェネレータライブラリFranklinを使ってサイトを作成する。"
+
 # Franklin
-Juliaと静的サイトジェネレータライブラリ[Franklin](https://franklinjl.org/)を使ってサイトを作成する。
+[Franklin](https://franklinjl.org/)
+
+{{fill description}}
 Franklinはmarkdown形式で記事を作成し、htmlに変換して出力する静的サイトジェネレータ。
 Juliaでコンパイルするので独自コマンドを追加したり、Julia式を評価したりできる。
 
 \toc
+
 ## テンプレートサイト作成
 ```julia-repl
 (v1.6) pkg> add Franklin
 julia> using Franklin
 julia> newsite("mySite")
 ```
+
 ## GitHubにホスティング
 サーバーは自前で用意せずGitHub Pagesを使う。
 こうすることで維持費が必要ない。

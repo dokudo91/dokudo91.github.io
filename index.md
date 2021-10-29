@@ -1,6 +1,7 @@
 @def title = "Juliaの世界"
 @def tags = ["julia"]
-Juliaを用いたプログラミングのあれこれをメモするためのサイト。
+@def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
+{{fill description}}
 ## コンストラクタ
 [コンストラクタのメモ](pages/Constructor)。
 Juliaはクラスベースではない。
@@ -12,3 +13,6 @@ C++,C#で感じていた不満を解消していて個人的には好き。
 ## DataFrames
 [DataFramesライブラリのメモ](pages/DataFrames)。
 pythonのpandasのJulia版。
+## デバッグ
+[デバッグメモ](pages/Debug)。
+Visual Studio Code、REPLを用いたデバッグテクニック。

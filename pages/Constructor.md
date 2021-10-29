@@ -1,7 +1,13 @@
-@def title = "Constructor"
+@def title = "コンストラクタ"
 @def tags = ["julia", "Constructor"]
+@def description = "Juliaは動的型付け言語だが、LLVMコンパイル時は型情報を用いて最適化を行っている。"
+
 # Constructor
 [Constructor](https://docs.julialang.org/en/v1/manual/constructors/)
+
+{{fill description}}
+従来の動的型付け言語と比べ、型の重要度は大きい。
+基本は動的型付け言語的に型を意識せず雑に書いて、速度を気にしたり、パッケージ化する時に型を意識する。
 \toc
 ## 型の初期値を指定する
 Juliaにおいて型はstructで定義される。
