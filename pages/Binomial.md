@@ -1,4 +1,4 @@
-@def title = "コンストラクタ"
+@def title = "二項分布"
 @def tags = ["julia", "二項分布"]
 @def description = "Juliaで二項分布を扱う。"
 
