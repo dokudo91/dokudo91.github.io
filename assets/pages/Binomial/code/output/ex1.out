@@ -1,1 +1,3 @@
-UndefVarError: Binomial not defined
+pdf(Binomial(10, 0.6), 5) = 0.20065812480000034
+pdf(Binomial(10, 0.6), 6) = 0.2508226560000002
+pdf(Binomial(10, 0.6), 7) = 0.2149908480000006
