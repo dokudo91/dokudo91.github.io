@@ -6,8 +6,9 @@
 {{fill description}}
 `Binomial(10, 0.6)`は表が出る確率が0.6のコインを１０回投げる時の二項分布を生成する。
 ```julia:binomial
-using Distributions
-using StatsPlots
+using Pkg
+Pkg.add(["Distributions","StatsPlots"])
+using Distributions, StatsPlots
 plot(Binomial(10, 0.6), xlabel="number of trials", ylabel="probability", label=nothing, xticks=1:1:10)
 savefig(joinpath(@OUTPUT, "binomial_10_06.svg"))
 ```
