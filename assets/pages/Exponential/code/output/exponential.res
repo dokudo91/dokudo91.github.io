@@ -1,0 +1,1 @@
+"/home/runner/work/dokudo91.github.io/dokudo91.github.io/__site/assets/pages/Exponential/code/output/exponential.svg"

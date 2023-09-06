@@ -1,0 +1,3 @@
+mean(rand(Exponential(2), 10)) = 1.139729818178493
+mean(rand(Exponential(2), 100)) = 2.304297753923884
+mean(rand(Exponential(2), 1000)) = 1.9522656774668683

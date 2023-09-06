@@ -1,0 +1,5 @@
+cdf(distribution, 0.5) = 0.22119921692859512
+cdf(distribution, 1) = 0.3934693402873666
+cdf(distribution, 2) = 0.6321205588285577
+cdf(distribution, 2) - cdf(distribution, 1) = 0.2386512185411911
+cdf(distribution, 10) = 0.9932620530009145
