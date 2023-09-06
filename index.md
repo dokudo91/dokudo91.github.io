@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## ベイズ推定
+[Juliaによるベイズ推定](pages/BayesianInference)。
 ## 指数分布
 [Juliaによる指数分布](pages/Exponential)。
 ## 一様分布
