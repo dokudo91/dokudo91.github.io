@@ -8,6 +8,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://dokudo91.github.io/pages/BayesianInference/index.html</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://dokudo91.github.io/pages/Exponential/index.html</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>monthly</changefreq>
