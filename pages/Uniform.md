@@ -9,7 +9,7 @@ DistributionsパッケージのUniformは指定した範囲の一様分布を生
 StatsPlotsライブラリのplot関数にそのまま渡せば確率密度関数(PDF)のグラフが生成される。
 ```julia:uniform
 using Distributions, StatsPlots
-plot(Uniform(1, 3), label="PDF")
+plot(Uniform(1, 3), ylims=(0,1), label="PDF")
 savefig(joinpath(@OUTPUT, "uniform.svg"))
 ```
 \fig{uniform}
