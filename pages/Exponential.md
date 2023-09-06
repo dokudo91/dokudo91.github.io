@@ -19,7 +19,7 @@ savefig(joinpath(@OUTPUT, "exponential.svg"))
 `Exponential(2)`は$λ=\frac{1}{2}$の指数分布を生成する。
 
 ## 具体例：コーヒーショップ
-コーヒーショップに訪れる客の間隔を指数分布でモデル化する。単位時間を1分とするとCDF(累積分布関数)はその時間内に客が来る確率になる。
+コーヒーショップに訪れる客の間隔を指数分布でモデル化する。単位時間を1分とするとCDF(累積分布関数)は次の客がその時間内に来る確率となる。
 ```julia:exponential/ex1
 distribution=Exponential(2)
 @show cdf(distribution, 0.5)
@@ -30,7 +30,7 @@ distribution=Exponential(2)
 ```
 \output{exponential/ex1}
 
-前回の客が来てから次の客が30秒内に来る確率は22%であり、1分以上、2分未満に来る確率は24%となる。
+次の客が30秒内に来る確率は22%であり、1分以上2分未満に来る確率は24%となる。
 
 ### rand
 rand関数で客が来る時間をシミュレートできる。
