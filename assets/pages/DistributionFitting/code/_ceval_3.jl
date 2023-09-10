@@ -1,3 +1,4 @@
 # This file was generated, do not modify it. # hide
-using Distributions
-fitted = fit(Normal, outcomes - df.spread)
+histogram(outcomes - df.spread, label="outcome - point spread")
+savefig(joinpath(@OUTPUT, "football.svg"))
+nothing
