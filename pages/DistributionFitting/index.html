@@ -14,12 +14,12 @@ first(outcomes, <span class=hljs-number >5</span>)</code></pre><pre><code class=
  27
  31
  -7
-  6</code></pre> <p>outcomesに実際の点数差を計算する。実際の点数差と予想の点数差との差をヒストグラムにする。</p> <pre><code class="julia hljs">histogram(outcomes - df.spread, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, ylabel=<span class=hljs-string >&quot;#&quot;</span>, guidefontsize=<span class=hljs-number >20</span>)
+  6</code></pre> <p>outcomesに実際の点数差を計算する。実際の点数差と予想の点数差との差をヒストグラムにする。</p> <pre><code class="julia hljs">histogram(outcomes - df.spread, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, ylabel=<span class=hljs-string >&quot;#&quot;</span>, guidefontsize=<span class=hljs-number >30</span>)
 savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;football.svg&quot;</span>))
 <span class=hljs-literal >nothing</span></code></pre> <img src="/assets/pages/DistributionFitting/code/output/football.svg" alt=""> <p>このヒストグラムを正規分布にフィッティングする。</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions
 fitted = fit(Normal, outcomes - df.spread)</code></pre><pre><code class="plaintext hljs">Distributions.Normal{Float64}(μ=0.22589285714285715, σ=13.687140377113344)</code></pre>
 <p>平均は0.23で標準偏差は13.69の正規分布にフィッティングされた。</p>
-<pre><code class="julia hljs">histogram(outcomes - df.spread, normalize=:pdf, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, ylabel=<span class=hljs-string >&quot;#&quot;</span>, guidefontsize=<span class=hljs-number >20</span>)
+<pre><code class="julia hljs">histogram(outcomes - df.spread, normalize=:pdf, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, ylabel=<span class=hljs-string >&quot;#&quot;</span>, guidefontsize=<span class=hljs-number >30</span>)
 plot!(fitted, label=<span class=hljs-string >&quot;Normal PDF&quot;</span>)
 savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;football_fitted.svg&quot;</span>))
 <span class=hljs-literal >nothing</span></code></pre>
