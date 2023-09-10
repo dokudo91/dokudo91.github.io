@@ -16,7 +16,7 @@ first(outcomes, 5)
 ```
 outcomesに実際の点数差を計算する。実際の点数差と予想の点数差との差をヒストグラムにする。
 ```!
-histogram(outcomes - df.spread, label="outcome - point spread", ylabel="#", guidefontsize=20)
+histogram(outcomes - df.spread, label="outcome - point spread", ylabel="#", guidefontsize=30)
 savefig(joinpath(@OUTPUT, "football.svg"))
 nothing
 ```
@@ -29,7 +29,7 @@ fitted = fit(Normal, outcomes - df.spread)
 ```
 平均は0.23で標準偏差は13.69の正規分布にフィッティングされた。
 ```!
-histogram(outcomes - df.spread, normalize=:pdf, label="outcome - point spread", ylabel="#", guidefontsize=20)
+histogram(outcomes - df.spread, normalize=:pdf, label="outcome - point spread", ylabel="#", guidefontsize=30)
 plot!(fitted, label="Normal PDF")
 savefig(joinpath(@OUTPUT, "football_fitted.svg"))
 nothing
