@@ -8,7 +8,7 @@ dist_male = Normal(μm, σm)
 dist_female = Normal(μf, σf)
 
 Y = MixtureModel([dist_male, dist_female], [<span class=hljs-number >0.6</span>, <span class=hljs-number >0.4</span>])
-plot(Y, label=[<span class=hljs-string >&quot;male PDF&quot;</span> <span class=hljs-string >&quot;female PDF&quot;</span>])
+plot(Y, label=[<span class=hljs-string >&quot;male PDF&quot;</span> <span class=hljs-string >&quot;female PDF&quot;</span>], yrotation=<span class=hljs-number >90</span>)
 plot!(x-&gt;pdf(Y,x), label=<span class=hljs-string >&quot;Mixture PDF&quot;</span>)
 savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;LawOfTotalVariance.svg&quot;</span>))
 <span class=hljs-literal >nothing</span></code></pre> <img src="/assets/pages/LawOfTotalVariance/code/output/LawOfTotalVariance.svg" alt=""> <p>Distributionsパッケージを使って混合モデルを作っている。この混合モデルの分散をLaw of total varianceで計算する。 Yから取り出したサンプルは0.6の確率でμm&#61;170の、0.4の確率でμf&#61;160の分布の分布に含まれる。Yから取り出したサンプルの平均の分散Var&#40;E&#91;Y&#93;&#41;は</p> <pre><code class="julia hljs">Var_E_Y = [(μm - mean(Y))^<span class=hljs-number >2</span>, (μf - mean(Y))^<span class=hljs-number >2</span>]</code></pre><pre><code class="plaintext hljs">2-element Vector{Float64}:
