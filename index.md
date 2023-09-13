@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## 確率分布の変換
+[Juliaで確率分布の変換を行う](pages/TransformingProbabilityDistributions)。
 ## Law of total variance
 [Law of total varianceをJuliaで検証する](pages/LawOfTotalVariance)。
 ## 確率分布フィッティング
