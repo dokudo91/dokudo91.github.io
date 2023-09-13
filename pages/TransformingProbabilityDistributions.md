@@ -17,7 +17,7 @@ uは$(u_1,u_2)$のベクトル、vは$(v_1,v_2)$のベクトルとする。
 ```!
 using Distributions, StatsPlots
 pu=MvNormal([0, 0],[1 0; 0 1])
-contour(-0.5:0.01:0.5, -0.5:0.01:0.5, (x, y) -> pdf(pu, [x, y]), size=(500, 400))
+contour(-0.5:0.01:0.5, -0.5:0.01:0.5, (x, y) -> pdf(pu, [x, y]), size=(500, 400), yrotation=90)
 savefig(joinpath(@OUTPUT, "pu.svg"))
 pdf(pu, [0, 0])
 ```
@@ -50,7 +50,7 @@ pv([-0.5, 0.3])
 確率密度関数のグラフは以下のようになる。0に近づくにつれ密度が無限大に大きくなっている。
 これはヤコビアンが無限大に大きくなるためである。
 ```!
-contour(-0.5:0.01:0.5, -0.5:0.01:0.5, (x, y) -> pv([x, y]), size=(500, 400))
+contour(-0.5:0.01:0.5, -0.5:0.01:0.5, (x, y) -> pv([x, y]), size=(500, 400), yrotation=90)
 savefig(joinpath(@OUTPUT, "pv.svg"))
 nothing
 ```
