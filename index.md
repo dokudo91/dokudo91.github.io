@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## Bayesian Data Analysisの練習問題1.12の1
+[Bayesian Data Analysisの練習問題1.12の1をJuliaで解く](pages/BDA3Exercises1_12_1)。
 ## 確率分布の変換
 [Juliaで確率分布の変換を行う](pages/TransformingProbabilityDistributions)。
 ## Law of total variance

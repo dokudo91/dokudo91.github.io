@@ -1,18 +1,19 @@
-using Distributions, StatsPlots, ForwardDiff, LinearAlgebra
+using Symbolics, Latexify, LaTeXStrings, Distributions
 
-# Define the original density function pu(u) (in this case, a uniform distribution)
-pu=MvNormal([0,0],[1 0; 0 1])
-f(u) = u.^3
-f_inv(v) = abs.(v).^(1/3) .* sign.(v)
-Jacobian(v)=ForwardDiff.jacobian(f_inv,v)
-pv(v) = det(Jacobian(v)) * pdf(pu, f_inv(v))
+@variables σ y
 
-contour(-0.5:0.01:0.5, -0.5:0.01:0.5, (x, y) -> pdf(pu, [x, y]), size=(400, 400))
-contour(-0.5:0.01:0.5, -0.5:0.01:0.5, (x, y) -> pv([x, y]), size=(400, 400))
+# Define conditional probabilities
+p_y_given_θ1 = 1/(sqrt(2Num(π))*σ) * exp(-(y - 1)^2 / (2*σ^2))
+p_y_given_θ2 = 1/(sqrt(2Num(π))*σ) * exp(-(y - 2)^2 / (2*σ^2))
 
-# Test with an example value of v
-v_example = [1,0.5]
-result = pv(v_example)
+# Define prior probabilities
+p_θ1 = 1//2
+p_θ2 = 1//2
 
-println("pv($v_example) = $result")
+# Calculate marginal probability P(y)
+p_y = p_θ1 * p_y_given_θ1 + p_θ2 * p_y_given_θ2
+D = Differential(y)
+replace(latexify(p_y),raw"\mathrm{identity}\left( \pi \right)"=>raw"\pi")|>LaTeXString
+replace(latexify(D(p_y)|>expand_derivatives),raw"\mathrm{identity}\left( \pi \right)"=>raw"\pi")|>LaTeXString
 
+using Distributions, StatsPlots
