@@ -1,19 +1,13 @@
-using Symbolics, Latexify, LaTeXStrings, Distributions
+using Distributions, Plots
 
-@variables σ y
 
-# Define conditional probabilities
-p_y_given_θ1 = 1/(sqrt(2Num(π))*σ) * exp(-(y - 1)^2 / (2*σ^2))
-p_y_given_θ2 = 1/(sqrt(2Num(π))*σ) * exp(-(y - 2)^2 / (2*σ^2))
+ε = 0.1  # Fixed value of ε
 
-# Define prior probabilities
-p_θ1 = 1//2
-p_θ2 = 1//2
-
-# Calculate marginal probability P(y)
-p_y = p_θ1 * p_y_given_θ1 + p_θ2 * p_y_given_θ2
-D = Differential(y)
-replace(latexify(p_y),raw"\mathrm{identity}\left( \pi \right)"=>raw"\pi")|>LaTeXString
-replace(latexify(D(p_y)|>expand_derivatives),raw"\mathrm{identity}\left( \pi \right)"=>raw"\pi")|>LaTeXString
-
-using Distributions, StatsPlots
+# Generate samples from a Binomial distribution
+samples(n, θ) = rand(Binomial(n, θ), 100)
+function Pr(n, θ)
+    samples_nθ=samples(n, θ)
+    count(abs.(samples_nθ ./ n .- θ) .> ε) / length(samples_nθ)
+end
+Pr(n)=Pr(n, 0.4)
+plot(1:10:500, Pr)

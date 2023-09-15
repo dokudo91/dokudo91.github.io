@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## 大数の弱法則
+[大数の弱法則をJuliaで確認する](pages/WeakLawOfLargeNumbers)。
 ## Bayesian Data Analysisの練習問題1.12の1
 [Bayesian Data Analysisの練習問題1.12の1をJuliaで解く](pages/BDA3Exercises1_12_1)。
 ## 確率分布の変換
