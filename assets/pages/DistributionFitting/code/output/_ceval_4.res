@@ -1,1 +1,1 @@
-nothing
+Distributions.Normal{Float64}(μ=0.22589285714285715, σ=13.687140377113344)

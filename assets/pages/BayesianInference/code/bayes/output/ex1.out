@@ -1,1 +1,1 @@
-UndefVarError: `posterior_density` not defined
+sum(posterior_density * 0.01) = 1.0000000000000002
