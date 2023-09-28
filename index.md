@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## BDA3 2.11 Exercises 1.Posterior inference
+[BDA3の2.11 Exercisesの1を解く](pages/BDA3_Exercises2_11_1)。
 ## 大数の弱法則
 [大数の弱法則をJuliaで確認する](pages/WeakLawOfLargeNumbers)。
 ## Bayesian Data Analysisの練習問題1.12の1

@@ -1,13 +1,13 @@
-using Distributions, Plots
+using Distributions, StatsPlots
+using StatsBase
 
+# Step 1: Generate 500 θj values from Gamma(20, 430000)
+θj_values = rand(Gamma(20, 1//430000), 500)
 
-ε = 0.1  # Fixed value of ε
+yjs = rand.(Poisson.(10000 .* θj_values))
 
-# Generate samples from a Binomial distribution
-samples(n, θ) = rand(Binomial(n, θ), 100)
-function Pr(n, θ)
-    samples_nθ=samples(n, θ)
-    count(abs.(samples_nθ ./ n .- θ) .> ε) / length(samples_nθ)
+# Print the counts
+println("Counts:")
+for (yj, count) in countmap(yjs) |> sort
+    println("$yj's: $count")
 end
-Pr(n)=Pr(n, 0.4)
-plot(1:10:500, Pr)
