@@ -1,33 +1,15 @@
 <!doctype html> <html lang=ja > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <meta name="twitter:card" content=summary > <meta name="twitter:title" content="Juliaの世界 |&gt; 確率分布フィッティング"> <meta name="twitter:site" content="@dokudo91"> <meta name="twitter:description" content="Juliaで確率分布フィッティングを行う。"> <meta name="twitter:image" content="https://dokudo91.github.io/assets/ソフィーの世界.png"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/basic.css"> <link rel=icon  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%220%22 y=%2280%22 font-family=%22Arial%22 font-size=%2285%22>😀</text></svg>"> <title>確率分布フィッティング</title> <header> <div class=blog-name ><a href="/">Juliaの世界</a></div> </header> <div class=franklin-content ><h1 id="確率分布フィッティング"><a href="#確率分布フィッティング" class=header-anchor >確率分布フィッティング</a></h1> <p>実際のデータに近い確率分布を探したい。データは<a href="http://www.stat.columbia.edu/~gelman/book/">Bayesian Data Analysis</a>の<a href="http://www.stat.columbia.edu/~gelman/book/data/football.asc">Football scores and point spreads</a>を使う。</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> CSV, DataFrames, StatsPlots
 df = CSV.File(<span class=hljs-string >&quot;_assets/datasets/football.csv&quot;</span>, delim = <span class=hljs-string >&#x27; &#x27;</span>, ignorerepeated = <span class=hljs-literal >true</span>, header=<span class=hljs-literal >true</span>) |&gt; DataFrame
-first(df, <span class=hljs-number >5</span>)</code></pre><pre><code class="plaintext hljs">5×7 DataFrame
- Row │ home   favorite  underdog  spread   favorite.name  underdog.name  week
-     │ Int64  Int64     Int64     Float64  String3        String3        Int64
-─────┼─────────────────────────────────────────────────────────────────────────
-   1 │     1        21        13      2.0  TB             MIN                1
-   2 │     1        27         0      9.5  ATL            NO                 1
-   3 │     1        31         0      4.0  BUF            NYJ                1
-   4 │     1         9        16      4.0  CHI            GB                 1
-   5 │     1        27        21      4.5  CIN            SEA                1</code></pre> <p>ここで、favoriteは勝つと予想されているチームの実際の点数、underdogは負けると予想されているチームの実際の点数、spreadはその試合の点差予想である。</p> <pre><code class="julia hljs">outcomes = df.favorite .- df.underdog
-first(outcomes, <span class=hljs-number >5</span>)</code></pre><pre><code class="plaintext hljs">5-element Vector{Int64}:
-  8
- 27
- 31
- -7
-  6</code></pre> <p>outcomesに実際の点数差を計算する。実際の点数差と予想の点数差との差をヒストグラムにする。</p> <pre><code class="julia hljs">histogram(outcomes - df.spread, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, yrotation=<span class=hljs-number >90</span>)
+first(df, <span class=hljs-number >5</span>)</code></pre><pre><code class="plaintext hljs">Failed to precompile StatsPlots [f3b207a7-027a-5e70-b257-86293d7955fd] to &quot;/home/runner/.julia/compiled/v1.9/StatsPlots/jl_u40dB3&quot;.
+</code></pre> <p>ここで、favoriteは勝つと予想されているチームの実際の点数、underdogは負けると予想されているチームの実際の点数、spreadはその試合の点差予想である。</p> <pre><code class="julia hljs">outcomes = df.favorite .- df.underdog
+first(outcomes, <span class=hljs-number >5</span>)</code></pre><pre><code class="plaintext hljs">UndefVarError: `df` not defined
+</code></pre> <p>outcomesに実際の点数差を計算する。実際の点数差と予想の点数差との差をヒストグラムにする。</p> <pre><code class="julia hljs">histogram(outcomes - df.spread, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, yrotation=<span class=hljs-number >90</span>)
 savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;football.svg&quot;</span>))
-<span class=hljs-literal >nothing</span></code></pre> <img src="/assets/pages/DistributionFitting/code/output/football.svg" alt=""> <p>このヒストグラムを正規分布にフィッティングする。</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions
-fitted = fit(Normal, outcomes - df.spread)</code></pre><pre><code class="plaintext hljs">Distributions.Normal{Float64}(μ=0.22589285714285715, σ=13.687140377113344)</code></pre>
-<p>平均は0.23で標準偏差は13.69の正規分布にフィッティングされた。</p>
-<pre><code class="julia hljs">histogram(outcomes - df.spread, normalize=:pdf, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, yrotation=<span class=hljs-number >90</span>)
+<span class=hljs-literal >nothing</span></code></pre><pre><code class="plaintext hljs">UndefVarError: `outcomes` not defined
+</code></pre> <p><span style="color:red;">// Image matching '/assets/pages/DistributionFitting/code/football' not found. //</span></p> <p>このヒストグラムを正規分布にフィッティングする。</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions
+fitted = fit(Normal, outcomes - df.spread)</code></pre><pre><code class="plaintext hljs">UndefVarError: `outcomes` not defined
+</code></pre> <p>平均は0.23で標準偏差は13.69の正規分布にフィッティングされた。</p> <pre><code class="julia hljs">histogram(outcomes - df.spread, normalize=:pdf, label=<span class=hljs-string >&quot;outcome - point spread&quot;</span>, yrotation=<span class=hljs-number >90</span>)
 plot!(fitted, label=<span class=hljs-string >&quot;Normal PDF&quot;</span>)
 savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;football_fitted.svg&quot;</span>))
-<span class=hljs-literal >nothing</span></code></pre>
-<img src="/assets/pages/DistributionFitting/code/output/football_fitted.svg" alt="">
-<p>ここで、ヒストグラムは<code>normalize&#61;:pdf</code>でPDFに正規化している。 正規分布の標準偏差が13.69ということは平均0.23から±13.69内に約68&#37;のデータが含まれることを意味する。</p>
-<div class=page-foot >
-  <div class=copyright >
-    &copy; dokudo91. Last modified: September 15, 2023. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
-  </div>
-</div>
-</div>
+<span class=hljs-literal >nothing</span></code></pre><pre><code class="plaintext hljs">UndefVarError: `outcomes` not defined
+</code></pre> <p><span style="color:red;">// Image matching '/assets/pages/DistributionFitting/code/football_fitted' not found. //</span></p> <p>ここで、ヒストグラムは<code>normalize&#61;:pdf</code>でPDFに正規化している。 正規分布の標準偏差が13.69ということは平均0.23から±13.69内に約68&#37;のデータが含まれることを意味する。</p> <div class=page-foot > <div class=copyright > &copy; dokudo91. Last modified: September 28, 2023. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div>
