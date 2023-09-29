@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## BDA3 2.11 Exercises 4
+[BDA3の2.11 Exercisesの4を解く](pages/BDA3_Exercises2_11_4)。
 ## BDA3 2.11 Exercises 3
 [BDA3の2.11 Exercisesの3を解く](pages/BDA3_Exercises2_11_3)。
 ## BDA3 2.11 Exercises 2
