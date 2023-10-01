@@ -56,7 +56,7 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://dokudo91.github.io/pages/BayesianInference/index.html</loc>
+    <loc>https://dokudo91.github.io/pages/BDA3_Exercises2_11_8/index.html</loc>
     <lastmod>2023-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -68,13 +68,19 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://dokudo91.github.io/pages/TransformingProbabilityDistributions/index.html</loc>
+    <loc>https://dokudo91.github.io/pages/BayesianInference/index.html</loc>
     <lastmod>2023-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://dokudo91.github.io/index.html</loc>
+    <lastmod>2023-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://dokudo91.github.io/pages/TransformingProbabilityDistributions/index.html</loc>
     <lastmod>2023-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
