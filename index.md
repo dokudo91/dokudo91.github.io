@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## BDA3 1.12 Exercises 2
+[BDA3の2.11 Exercisesの2を解く](pages/BDA3_Exercises1_12_2)。
 ## BDA3 2.11 Exercises 20
 [BDA3の2.11 Exercisesの20を解く](pages/BDA3_Exercises2_11_20)。
 ## BDA3 2.11 Exercises 17
@@ -39,13 +41,15 @@
 ## 大数の弱法則
 [大数の弱法則をJuliaで確認する](pages/WeakLawOfLargeNumbers)。
 ## Bayesian Data Analysisの練習問題1.12の1
-[Bayesian Data Analysisの練習問題1.12の1をJuliaで解く](pages/BDA3Exercises1_12_1)。
+[Bayesian Data Analysisの練習問題1.12の1をJuliaで解く](pages/BDA3_Exercises1_12_1)。
 ## 確率分布の変換
 [Juliaで確率分布の変換を行う](pages/TransformingProbabilityDistributions)。
 ## Law of total variance
 [Law of total varianceをJuliaで検証する](pages/LawOfTotalVariance)。
 ## 確率分布フィッティング
 [確率分布フィッティング](pages/DistributionFitting)。
+- CSVファイルのロード
+- Distributions.jlのfit
 ## ベイズ推定
 [Juliaによるベイズ推定](pages/BayesianInference)。
 ## 指数分布
