@@ -37,16 +37,16 @@ savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string 
 <p>計算した事後分布p&#40;θ|y&#41;から1000個サンプリングを行う。</p>
 <pre><code class="julia hljs">posteriorθ_samples=wsample(<span class=hljs-number >0</span>:<span class=hljs-number >0.1</span>:<span class=hljs-number >100</span>, posterior_pdf.(<span class=hljs-number >0</span>:<span class=hljs-number >0.1</span>:<span class=hljs-number >100</span>), <span class=hljs-number >1000</span>)
 posteriorθ_samples[<span class=hljs-number >1</span>:<span class=hljs-number >10</span>]</code></pre><pre><code class="plaintext hljs">10-element Vector{Float64}:
+ 43.3
+ 45.3
+ 45.9
+ 45.5
+ 45.2
+ 44.2
  43.6
  44.3
  44.3
- 47.9
- 46.5
- 43.7
- 46.5
- 44.9
- 43.6
- 46.5</code></pre>
+ 47.9</code></pre>
 <p>サンプリングはMHアルゴリズムでも使った方が良いが、重み付きサンプリング関数wsampleで代用する。</p>
 <pre><code class="julia hljs">histogram(posteriorθ_samples,yrotation=<span class=hljs-number >90</span>,label=<span class=hljs-string >&quot;posteriorθ_samples&quot;</span>,bins=<span class=hljs-number >40</span>)
 savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;samples.svg&quot;</span>))
@@ -71,7 +71,7 @@ extrema(ysamples)</code></pre><pre><code class="plaintext hljs">(-142.3379453534
 <p>ほとんどは45の周辺であるが、-200から400まで低確率で出現していることがわかる。</p>
 <div class=page-foot >
   <div class=copyright >
-    &copy; dokudo91. Last modified: October 08, 2023. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    &copy; dokudo91. Last modified: October 09, 2023. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
