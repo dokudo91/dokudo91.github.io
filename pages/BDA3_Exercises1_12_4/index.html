@@ -1,0 +1,18 @@
+<!doctype html> <html lang=ja > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <meta name="twitter:card" content=summary > <meta name="twitter:title" content="Juliaの世界 |&gt; BDA3の1.12 Exercisesの4を解く"> <meta name="twitter:site" content="@dokudo91"> <meta name="twitter:description" content="BDA3の1.12 Exercisesの4を解く。"> <meta name="twitter:image" content="https://dokudo91.github.io/assets/ソフィーの世界.png"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/basic.css"> <link rel=icon  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%220%22 y=%2280%22 font-family=%22Arial%22 font-size=%2285%22>😀</text></svg>"> <title>BDA3の1.12 Exercisesの4を解く</title> <header> <div class=blog-name ><a href="/">Juliaの世界</a></div> </header> <div class=franklin-content ><p>BDA3の1.12 Exercisesの4を解く。 本文は<a href="http://www.stat.columbia.edu/~gelman/book/">Bayesian Data Analysis</a>。 解答参考は<a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">Solutions to some exercises from Bayesian Data Analysis</a>。</p> <h1 id=ol_start4_probability_assignment ><a href="#ol_start4_probability_assignment" class=header-anchor ><ol start=4 > <li><p>Probability assignment</p> </ol> </a></h1> <p>フットボールの試合で８点差のついた試合１２試合を取り出して考える。 その１２試合の収支は-7,-5,-3,-3,1,6,7,13,15,16,20,21である。 プラス収支は優位なチームが勝った時の収支であり、マイナス収支は劣位なチームが勝った時の収支である。</p> <h2 id="a_条件付き確率の計算"><a href="#a_条件付き確率の計算" class=header-anchor >&#40;a&#41; 条件付き確率の計算</a></h2> <p>Pr&#40;優位チームの勝利 | 点差&#61;8&#41;は12試合中8試合なので、8/12&#61;0.667である。</p> <p>Pr&#40;優位チームの収支８以上 | 点差&#61;8&#41;は12試合中5試合なので、5/12&#61;0.417である。</p> <p>Pr&#40;優位チームの収支８以上 | 点差&#61;8, 優位チームの勝利&#41;は8試合中5試合なので、5/8&#61;0.625である。</p> <h2 id="b_正規分布近似"><a href="#b_正規分布近似" class=header-anchor >&#40;b&#41; 正規分布近似</a></h2> <p>収支-点差の分布を正規分布近似する。</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions
+dist=fit(Normal,[-<span class=hljs-number >7</span>,-<span class=hljs-number >5</span>,-<span class=hljs-number >3</span>,-<span class=hljs-number >3</span>,<span class=hljs-number >1</span>,<span class=hljs-number >6</span>,<span class=hljs-number >7</span>,<span class=hljs-number >13</span>,<span class=hljs-number >15</span>,<span class=hljs-number >16</span>,<span class=hljs-number >20</span>,<span class=hljs-number >21</span>] .- <span class=hljs-number >8</span>)</code></pre><pre><code class="plaintext hljs">Distributions.Normal{Float64}(μ=-1.25, σ=9.67061700892623)</code></pre>
+<p>平均は-1.25、標準偏差は9.67の正規分布に近似された。</p>
+<p>Pr&#40;優位チームの勝利 | 点差&#61;8&#41;は</p>
+<pre><code class="julia hljs"><span class=hljs-number >1</span>-cdf(dist,-<span class=hljs-number >8</span>)</code></pre><pre><code class="plaintext hljs">0.757408471152146</code></pre>
+<p>である。</p>
+<p>Pr&#40;優位チームの収支８以上 | 点差&#61;8&#41;は</p>
+<pre><code class="julia hljs"><span class=hljs-number >1</span>-cdf(dist,<span class=hljs-number >0</span>)</code></pre><pre><code class="plaintext hljs">0.44857694058893594</code></pre>
+<p>である。</p>
+<p>Pr&#40;優位チームの収支８以上 | 点差&#61;8, 優位チームの勝利&#41;は</p>
+<pre><code class="julia hljs">(<span class=hljs-number >1</span>-cdf(dist,<span class=hljs-number >0</span>))/(<span class=hljs-number >1</span>-cdf(dist,-<span class=hljs-number >8</span>))</code></pre><pre><code class="plaintext hljs">0.5922523416018503</code></pre>
+<p>である。</p>
+<div class=page-foot >
+  <div class=copyright >
+    &copy; dokudo91. Last modified: October 09, 2023. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div>
