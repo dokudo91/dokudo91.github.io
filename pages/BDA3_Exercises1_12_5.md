@@ -1,6 +1,6 @@
-@def title = "BDA3の1.12 Exercisesの4を解く"
+@def title = "BDA3の1.12 Exercisesの5を解く"
 @def tags = ["julia", "BDA3"]
-@def description = "BDA3の1.12 Exercisesの4を解く。"
+@def description = "BDA3の1.12 Exercisesの5を解く。"
 {{fill description}}
 本文は[Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/)。
 解答参考は[Solutions to some exercises from Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf)。
