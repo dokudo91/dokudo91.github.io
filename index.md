@@ -2,6 +2,8 @@
 @def tags = ["julia"]
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
+## BDA3 3.10 Exercises 2
+[BDA3の3.10 Exercisesの2を解く](pages/BDA3_Exercises3_10_2)。
 ## BDA3 3.10 Exercises 1
 [BDA3の3.10 Exercisesの1を解く](pages/BDA3_Exercises3_10_1)。
 ## BDA3 1.12 Exercises 6
@@ -24,6 +26,8 @@
 [BDA3の2.11 Exercisesの15を解く](pages/BDA3_Exercises2_11_15)。
 ## BDA3 2.11 Exercises 13
 [BDA3の2.11 Exercisesの13を解く](pages/BDA3_Exercises2_11_13)。
+- 飛行機の致命的事故の表
+- CSV→DataFrame変換
 ## BDA3 2.11 Exercises 12
 [BDA3の2.11 Exercisesの12を解く](pages/BDA3_Exercises2_11_12)。
 ## BDA3 2.11 Exercises 11
