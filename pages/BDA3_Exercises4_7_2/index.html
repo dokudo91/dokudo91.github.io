@@ -14,7 +14,7 @@ max_index = argmax(likelihood_y.(y|&gt;<span class=hljs-built_in >Ref</span>,(<s
 matrix_αβ = tuple.((<span class=hljs-number >0</span>:<span class=hljs-number >0.01</span>:<span class=hljs-number >2</span>)&#x27;,<span class=hljs-number >5</span>:<span class=hljs-number >0.01</span>:<span class=hljs-number >10</span>)
 α, β = matrix_αβ[max_index]</code></pre><pre><code class="plaintext hljs">(0.85, 7.76)</code></pre>
 <img src="/assets/pages/BDA3_Exercises4_7_2/code/output/likelihood_y.svg" alt="">
-<p>この図は正規分布近似していない尤度関数の確率密度である。 αとβの事後分布モードは&#40;0.85, 7.76&#41;と分かった。</p>
+<p>この図は正規化していない尤度関数の確率密度である。 密度の値は正しくない&#40;全範囲で1にならない&#41;がモードは取得できる。 αとβの事後分布モードは&#40;0.85, 7.76&#41;と分かった。</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions, LinearAlgebra
 expx = exp.(α .+ β .* x)
 expx12 = (<span class=hljs-number >1</span> .+ expx) .^<span class=hljs-number >2</span>
