@@ -3,7 +3,7 @@
 @def description = "Juliaを用いたプログラミングのあれこれをメモするためのサイト。"
 {{fill description}}
 ## Julia Advent Calendar 2023
-[Juliaでベイズ推定](pages/JuliaAdventCalendar202302)。
+[Juliaで確率分布](pages/JuliaAdventCalendar202302)。
 ## BDA3 Chapter2 demos
 [BDA3 Chapter2のデモ](pages/BDA3_Chapter2_demos)。
 ## BDA3 4.7 Exercises 3
