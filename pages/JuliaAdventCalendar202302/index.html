@@ -1,0 +1,56 @@
+<!doctype html> <html lang=ja > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <meta name="twitter:card" content=summary > <meta name="twitter:title" content="Juliaの世界 |&gt; Juliaで中心極限定理を確認する"> <meta name="twitter:site" content="@dokudo91"> <meta name="twitter:description" content="Julia Advent Calendar 2023の2日の記事です。"> <meta name="twitter:image" content="https://dokudo91.github.io/assets/ソフィーの世界.png"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/basic.css"> <link rel=icon  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%220%22 y=%2280%22 font-family=%22Arial%22 font-size=%2285%22>😀</text></svg>"> <title>Juliaで中心極限定理を確認する</title> <header> <div class=blog-name ><a href="/">Juliaの世界</a></div> </header> <div class=franklin-content ><p>Julia Advent Calendar 2023の2日の記事です。 この記事は<a href="https://qiita.com/advent-calendar/2023/julia">Julia Advent Calendar 2023</a>用に書かれました。</p> <h1 id="juliaで確率分布"><a href="#juliaで確率分布" class=header-anchor >Juliaで確率分布</a></h1> <p>Juliaで確率分布を扱うには<a href="https://github.com/JuliaStats/Distributions.jl">Distributions.jl</a>を使います。 確率分布でよく使われる正規分布は以下のように導入されます。</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Distributions
+dist=Normal()</code></pre><pre><code class="plaintext hljs">Distributions.Normal{Float64}(μ=0.0, σ=1.0)</code></pre>
+<p>Normal型のオブジェクトをdistとして生成します。 引数は何も指定していないので、平均1、標準偏差0の正規分布が作られます。 確率密度関数のグラフとして表示するには<a href="https://github.com/JuliaPlots/StatsPlots.jl">StatsPlots.jl</a>を使うと簡単です。</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >using</span> StatsPlots
+plot(dist, yrotation=<span class=hljs-number >90</span>, label=<span class=hljs-string >&quot;Normal&quot;</span>)
+savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;Normal.svg&quot;</span>))
+<span class=hljs-literal >nothing</span></code></pre>
+<img src="/assets/pages/JuliaAdventCalendar202302/code/output/Normal.svg" alt="">
+<p>plot関数にNormal型のオブジェクトを渡すだけで良いです。 savefigでsvgとして保存していますが、これはこのサイトが<a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>で作られており、表示のためにそうしているだけです。</p>
+<h1 id="正規分布"><a href="#正規分布" class=header-anchor >正規分布</a></h1>
+<p>正規分布が統計学でよく出てくるのは中心極限定理の所為です。 母集団の分布がなんであれ&#40;例外はある&#41;無作為に繰り返し測定すればその測定値の平均値は、母集団の平均値μ&#40;母平均&#41;を中心として分散<span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">σ^2</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8141079999999999em;vertical-align:0em;"></span><span class=mord ><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>&#40;母分散&#41;をサンプル数nで割った値<span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup><mi mathvariant=normal >/</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">σ^2/n</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.064108em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class=mord >/</span><span class="mord mathnormal">n</span></span></span></span>の分散を持つ正規分布に近づいていくということです。 母集団の分布なんてわからないことが普通なので、独立同分布&#40;iid&#41;の条件を前提におけるのであれば中心極限定理は有用です。 n&#61;1であれば平均μ、分散<span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">σ^2</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8141079999999999em;vertical-align:0em;"></span><span class=mord ><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>の正規分布となります。</p>
+<h2 id="母集団が一様分布の場合"><a href="#母集団が一様分布の場合" class=header-anchor >母集団が一様分布の場合</a></h2>
+<p>母集団が一様分布の場合を考える。</p>
+<pre><code class="julia hljs">uniform = Uniform(<span class=hljs-number >2</span>,<span class=hljs-number >5</span>)
+plot(uniform, yrotation=<span class=hljs-number >90</span>, label=<span class=hljs-string >&quot;uniform&quot;</span>, ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >0.5</span>))
+savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;uniform.svg&quot;</span>))
+<span class=hljs-literal >nothing</span></code></pre>
+<img src="/assets/pages/JuliaAdventCalendar202302/code/output/uniform.svg" alt="">
+<pre><code class="julia hljs">mean(uniform), var(uniform)</code></pre><pre><code class="plaintext hljs">(3.5, 0.75)</code></pre>
+<p>この母集団の平均は3.5であり、分散は0.75で計算される。 この母集団から10個サンプリングする作業を100回繰り返す。</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >using</span> Random
+Random.seed!(<span class=hljs-number >1</span>)
+samples = [rand(uniform,<span class=hljs-number >10</span>) <span class=hljs-keyword >for</span> _ <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >100</span>]
+samples[<span class=hljs-number >1</span>:<span class=hljs-number >5</span>]</code></pre><pre><code class="plaintext hljs">5-element Vector{Vector{Float64}}:
+ [2.1475154664443634, 2.3572364492225213, 3.1798130696758418, 2.072282931573583, 4.075571862602665, 4.302554162262173, 2.261759146738227, 4.56715305232872, 4.407682129770471, 3.984276055054304]
+ [4.832954761529081, 3.383150168924247, 4.491002993257353, 3.7193952876134206, 2.5298752634385346, 2.344805892886096, 4.3592004955513275, 4.677792704745261, 2.6217587682890557, 2.763417385500673]
+ [3.2946421747434216, 3.924646197840194, 3.9031960581667002, 2.9255759467206275, 2.20593736441545, 4.791120961099627, 2.4762826673558416, 4.469367748926269, 2.50115872786336, 4.159162077621555]
+ [3.730080597990928, 4.227565336128935, 4.57056890336396, 2.2754446807921274, 2.673783746569811, 4.517452593856156, 2.5058147778099986, 3.6950118846683644, 2.5280515122991853, 3.5921746168734296]
+ [3.3757604756601043, 3.925119448843251, 3.9287469451790886, 4.8638801916153, 4.332841322783667, 4.165309850877898, 4.725422833458447, 3.629596002409319, 2.7673697219291262, 3.8494054415521295]</code></pre>
+<p>ログは5つまでを表示している。 それぞれ平均を計算して、そのヒストグラムを表示する。</p>
+<pre><code class="julia hljs">sample_means = mean.(samples)
+histogram(sample_means, yrotation=<span class=hljs-number >90</span>, label=<span class=hljs-string >&quot;sample_means&quot;</span>, bins=<span class=hljs-number >20</span>)
+savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;histogram.svg&quot;</span>))
+<span class=hljs-literal >nothing</span></code></pre>
+<img src="/assets/pages/JuliaAdventCalendar202302/code/output/histogram.svg" alt="">
+<p>100個程度では正規分布しているようには見えない。 平均と分散は</p>
+<pre><code class="julia hljs">mean(sample_means), var(sample_means)</code></pre><pre><code class="plaintext hljs">(3.5315617530433223, 0.08427463601015561)</code></pre>
+<p>と計算される。母集団の母平均と母分散をn&#61;10で割った値は</p>
+<pre><code class="julia hljs">mean(uniform), var(uniform) / <span class=hljs-number >10</span></code></pre><pre><code class="plaintext hljs">(3.5, 0.075)</code></pre>
+<p>なので近くはある。</p>
+<p>100回の繰り返しは少ないので、5000回繰り返す。</p>
+<pre><code class="julia hljs">samples = [rand(uniform,<span class=hljs-number >10</span>) <span class=hljs-keyword >for</span> _ <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >5000</span>]
+sample_means = mean.(samples)
+histogram(sample_means, yrotation=<span class=hljs-number >90</span>, label=<span class=hljs-string >&quot;sample_means&quot;</span>, bins=<span class=hljs-number >20</span>)
+savefig(joinpath(<span class=hljs-meta >@OUTPUT</span>, <span class=hljs-string >&quot;histogram2.svg&quot;</span>))
+<span class=hljs-literal >nothing</span></code></pre>
+<img src="/assets/pages/JuliaAdventCalendar202302/code/output/histogram2.svg" alt="">
+<p>正規分布に近づいた。平均と分散は</p>
+<pre><code class="julia hljs">mean(sample_means), var(sample_means)</code></pre><pre><code class="plaintext hljs">(3.4956379305596332, 0.07402950947217028)</code></pre>
+<p>であり、こちらも理論上の値とほぼ同等である。</p>
+<div class=page-foot >
+  <div class=copyright >
+    &copy; dokudo91. Last modified: December 01, 2023. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div>
